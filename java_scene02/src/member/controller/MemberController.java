@@ -23,33 +23,37 @@ public class MemberController implements Initializable  {
 	@FXML public CheckBox chkMusic, chkMovie, chkMung;
 	@FXML public RadioButton rdoWoman;
 
-	
+
 	MemberService ms;
 	Parent root;
 	public void setRoot(Parent root) {
 		ms.setRoot(root);
 		this.root = root;
 	}
-
+	public MemberController() {
+		System.out.println("생성자 초기화"+cmbAge); 
+		//생성자에서는 객체를 얻기전 초기화라서 생성자초기화 대신 상속받는 initializable을 사용
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println("초기화"+cmbAge);
 		ms = new MemberServiceImpl();
-		
+
 		String[] cmbTxt = {"20대 미만", "20대", "30대", "40대", "50대 이상"};
 		cmbAge.getItems().addAll(cmbTxt); //셋아이템 데이터만 새롭게 추가한다
 		/*
 		String[] cmbVal = {"1", "2", "3", "4", "5"};
 		ObservableList<String> list = FXCollections.observableArrayList(cmbVal);
 		cmbAge.setItems(list);
-		*/
+		 */
 	}
 	public void registerFunc() {
 		ms.registerFunc();
-		
-		
+
+
 	}
 	public void cancelFunc() {
 		ms.cancelFunc();
-		
+
 	}
 }
